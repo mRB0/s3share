@@ -1,0 +1,12 @@
+AWS_ACCESS_KEY_ID = '...'
+AWS_SECRET_ACCESS_KEY = '...'
+
+AWS_S3_BUCKET_NAME = '...'
+AWS_S3_REGION = 'us-east-2'
+
+AWS_DYNAMODB_TABLE = '...'
+AWS_DYNAMODB_PARTITION_KEY = 'partition'
+AWS_DYNAMODB_SORT_KEY = 'index'
+AWS_DYNAMODB_REGION = 'us-east-2'
+
+SERVE_BASE_URL = None # "None" to use s3 bucket url; otherwise specify a base URL
