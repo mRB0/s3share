@@ -10,3 +10,6 @@ AWS_DYNAMODB_SORT_KEY = 'index'
 AWS_DYNAMODB_REGION = 'us-east-2'
 
 SERVE_BASE_URL = None # "None" to use s3 bucket url; otherwise specify a base URL
+
+REPLACE_NON_URLSAFE_CHARACTERS_IN_FILENAMES = True # eg. If True, 'screen shot.png' gets renamed to 'screen_shot.png'; otherwise, your URLs look like https://host/screen%20shot.png
+
