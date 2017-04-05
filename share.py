@@ -15,6 +15,14 @@ import config
 
 log = _logging.getLogger(__name__)
 
+URL_SAFE_CHARS = frozenset({'-', '.', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'})
+
+def make_urlsafe(s):
+    l = [c if c in URL_SAFE_CHARS else '_'
+         for c in s]
+    
+    return ''.join(l)
+
 def load_state():
     home = os.getenv('HOME')
     assert home is not None, 'HOME must be set in environment'
@@ -78,6 +86,10 @@ def upload(paths):
     
     for path in paths:
         filename = os.path.basename(path)
+
+        if config.REPLACE_NON_URLSAFE_CHARACTERS_IN_FILENAMES:
+            filename = make_urlsafe(filename)
+        
         content_type = guess_type(filename)[0] or 'application-octet/stream'
 
         with open(path, 'rb') as f:
